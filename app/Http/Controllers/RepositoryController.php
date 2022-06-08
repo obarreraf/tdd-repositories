@@ -31,10 +31,7 @@ class RepositoryController extends Controller
 
     public function store(RepositoryRequest $request)
     {
-        $request->validate([
-            'url' => 'required',
-            'description' => 'required',
-        ]);
+
         $request->user()->repositories()->create($request->all());
 
         return redirect()->route('repositories.index');
@@ -52,10 +49,6 @@ class RepositoryController extends Controller
 
     public function update(RepositoryRequest $request, Repository $repository)
     {
-        $request->validate([
-            'url' => 'required',
-            'description' => 'required',
-        ]);
 
         if($request->user()->id != $repository->user_id)
         {
@@ -64,7 +57,7 @@ class RepositoryController extends Controller
 
         $repository->update($request->all());
 
-        return redirect()->route('repositories.edit', $repository);
+        return redirect()->route('repositories.index');
     }
 
     public function destroy(Request $request, Repository $repository)
