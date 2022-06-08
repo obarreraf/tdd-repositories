@@ -10,8 +10,12 @@ use App\Models\Repository;
 
 class PageControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_home()
     {
+        $this->withoutExceptionHandling(); #oculta la excepción del test
+
         $repository = Repository::factory()->create();
 
         $this
