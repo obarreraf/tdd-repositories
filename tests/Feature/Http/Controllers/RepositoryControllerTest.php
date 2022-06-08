@@ -82,6 +82,8 @@ class RepositoryControllerTest extends TestCase
 
     public function test_update()
     {
+        $this->withoutExceptionHandling(); #oculta la excepción del test
+
         $user = User::factory()->create();
         $repository = Repository::factory()->create(['user_id' => $user->id]);
         $data = [
